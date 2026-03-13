@@ -1,26 +1,27 @@
 package com.uceva.project_analytics.modules.company.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
-import java.util.*;
+
+import com.uceva.project_analytics.modules.company.model.CompanyEntity;
+import com.uceva.project_analytics.modules.company.repository.CompanyRepository;
 
 @Service
 public class CompanyService {
 
-    public List<Map<String, String>> getCompanies(){
+    private final CompanyRepository repository;
 
-        List<Map<String, String>> companies = new ArrayList<>();
-
-        Map<String, String> c1 = new HashMap<>();
-        c1.put("name","AgroGuadañas Sevilla");
-        c1.put("sector","Agroindustrial");
-
-        Map<String, String> c2 = new HashMap<>();
-        c2.put("name","Uniformes Santana");
-        c2.put("sector","Textil");
-
-        companies.add(c1);
-        companies.add(c2);
-
-        return companies;
+    public CompanyService(CompanyRepository repository){
+        this.repository = repository;
     }
+
+    public List<CompanyEntity> getCompanies(){
+        return repository.findAll();
+    }
+
+    public CompanyEntity saveCompany(CompanyEntity company){
+        return repository.save(company);
+    }
+
 }

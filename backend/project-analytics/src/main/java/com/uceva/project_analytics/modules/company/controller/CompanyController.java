@@ -3,6 +3,7 @@ package com.uceva.project_analytics.modules.company.controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
+import com.uceva.project_analytics.modules.company.model.CompanyEntity;
 import com.uceva.project_analytics.modules.company.service.CompanyService;
 
 @RestController
@@ -16,7 +17,7 @@ public class CompanyController {
     }
 
     @GetMapping
-    public List<Map<String,String>> getCompanies(){
+    public List<CompanyEntity> getCompanies() {
         return companyService.getCompanies();
     }
 }
