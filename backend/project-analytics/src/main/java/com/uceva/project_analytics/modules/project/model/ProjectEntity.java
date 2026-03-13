@@ -1,6 +1,7 @@
 package com.uceva.project_analytics.modules.project.model;
 
 import jakarta.persistence.*;
+import java.util.List;
 import com.uceva.project_analytics.modules.company.model.CompanyEntity;
 
 @Entity
@@ -21,6 +22,12 @@ public class ProjectEntity {
     @JoinColumn(name = "sector_id")
     private SectorEntity sector;
 
-    public ProjectEntity() {}
+    @ManyToMany
+    @JoinTable(
+        name = "project_students",
+        joinColumns = @JoinColumn(name = "project_id"),
+        inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private List<StudentEntity> students;
 
 }
